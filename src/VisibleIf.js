@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const has = (obj, key) => object.hasOwnProperty(key);
-
 class VisibleIf extends Component {
 
   static displayName = 'VisibleIf';
