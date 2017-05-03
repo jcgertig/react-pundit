@@ -25,6 +25,11 @@ Install it via npm:
 npm install --save react-pundit
 ```
 
+## Other Components
+
+> Pundit based routes
+[react-router Pundit](https://github.com/jcgertig/react-router-pundit).
+
 ## Example
 
 ```html
@@ -63,7 +68,7 @@ class App extends Component {
           <VisibleIf type="Post" action="Edit" model={post} user={userAdmin}>
             <button>edit will show</button>
           </VisibleIf>
-        </HexGrid>
+        </PunditContainer>
       </div>
     );
   }
@@ -105,6 +110,7 @@ PostPolicy.addAction('Create', (model, user) => {
 });
 
 export default toPolicyObject([PostPolicy]);
+
 // OO example
 
 import { PunditPolicy, toPolicyObject } from 'react-pundit';
