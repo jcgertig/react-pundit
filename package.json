@@ -4,11 +4,11 @@
   "version": "1.0.0-rc5",
   "main": "lib/index.js",
   "author": "jcgertig",
-  "repository": "jcgertig/react-permissioning",
+  "repository": "jcgertig/react-pundit",
   "license": "MIT",
   "scripts": {
     "compile": "babel src/ --out-dir lib",
-    "bundle": "babel src/ --out-file dist/react-permissioning.js",
+    "bundle": "babel src/ --out-file dist/react-pundit.js",
     "prepublish": "npm run compile",
     "test:watch": "jest --watch --coverage",
     "test": "jest --coverage"
