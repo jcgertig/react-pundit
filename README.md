@@ -49,25 +49,31 @@ class App extends Component {
     return (
       <div className="App">
         <PunditContainer policies={policies} user={userOne}>
-          <VisibleIf type="Post" action="Create" model={post}>
-            <button>create will not show</button>
-          </VisibleIf>
-          <VisibleIf type="Post" action="Create" model={post} user={userTwo}>
-            <button>create will show</button>
-          </VisibleIf>
-          <VisibleIf type="Post" action="Create" model={post} user={userAdmin}>
-            <button>create will show</button>
-          </VisibleIf>
+          <PunditTypeSet type="Post">
+            <VisibleIf action="Create">
+              <button>create will not show</button>
+            </VisibleIf>
+            <VisibleIf action="Create" user={userTwo}>
+              <button>create will show</button>
+            </VisibleIf>
+            <VisibleIf action="Create" user={userAdmin}>
+              <button>create will show</button>
+            </VisibleIf>
 
-          <VisibleIf type="Post" action="Edit" model={post}>
-            <button>edit will not show</button>
-          </VisibleIf>
-          <VisibleIf type="Post" action="Edit" model={post} user={userOneActivated}>
-            <button>edit will show</button>
-          </VisibleIf>
-          <VisibleIf type="Post" action="Edit" model={post} user={userAdmin}>
-            <button>edit will show</button>
-          </VisibleIf>
+            <VisibleIf action="Edit" model={post}>
+              <button>edit will not show</button>
+            </VisibleIf>
+            <VisibleIf action="Edit" model={post} user={userOneActivated}>
+              <button>edit will show</button>
+            </VisibleIf>
+            <VisibleIf action="Edit" model={post} user={userAdmin}>
+              <button>edit will show</button>
+            </VisibleIf>
+
+            <VisibleIf type="Comment" action="Create" user={userOneActivated}>
+              <button>comment create will show</button>
+            </VisibleIf>
+          </PunditTypeSet>
         </PunditContainer>
       </div>
     );
@@ -92,6 +98,17 @@ export default {
       default:
         return false;
     }
+  },
+  Comment: (action, model, user) => {
+    if (user.activated === false) { return false; }
+    if (user.role === 'admin') { return true; }
+
+    switch (action) {
+      case 'Create':
+        return true;
+      default:
+        return false;
+    }
   }
 };
 
@@ -109,7 +126,13 @@ PostPolicy.addAction('Create', (model, user) => {
   return user.activated;
 });
 
-export default toPolicyObject([PostPolicy]);
+const CommentPolicy = createPolicy('Comment');
+
+CommentPolicy.addAction('Create', (model, user) => {
+  return user.activated;
+});
+
+export default toPolicyObject([PostPolicy, CommentPolicy]);
 
 // OO example
 
@@ -129,7 +152,17 @@ class PostPolicy extends PunditPolicy {
   }
 }
 
-export default toPolicyObject([new PostPolicy()]);
+class CommentPolicy extends PunditPolicy {
+  constructor() {
+    super('Comment');
+  }
+
+  Create(model, user) {
+    return user.activated;
+  }
+}
+
+export default toPolicyObject([new PostPolicy(), new CommentPolicy()]);
 
 ```
 
@@ -138,6 +171,7 @@ export default toPolicyObject([new PostPolicy()]);
 // Available components
 import {
   PunditContainer,
+  PunditTypeSet,
   VisibleIf
 } from 'react-pundit';
 

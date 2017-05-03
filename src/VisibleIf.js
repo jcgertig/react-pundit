@@ -22,11 +22,13 @@ class VisibleIf extends Component {
 
   static contextTypes = {
     punditCheck: PropTypes.func,
+    punditType: PropTypes.string,
   };
 
   render() {
     const { type, action, model, user, children } = this.props;
-    if (this.context.punditCheck(type, action, model, user)) {
+    const { punditCheck, punditType } = this.context;
+    if (punditCheck(type || punditType, action, model, user)) {
       return children;
     }
     return null;
