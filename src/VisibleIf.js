@@ -1,35 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import PunditComponent from './PunditComponent';
 
-class VisibleIf extends Component {
+class VisibleIf extends PunditComponent {
 
   static displayName = 'VisibleIf';
 
-  static propTypes = {
-    type: PropTypes.string,
-    action: PropTypes.string,
-    model: PropTypes.object,
-    user: PropTypes.object,
-    children: PropTypes.any,
-  };
-
-  static defaultProps = {
-    type: '',
-    action: '',
-    model: {},
-    user: null,
-  };
-
-  static contextTypes = {
-    punditCheck: PropTypes.func,
-    punditType: PropTypes.string,
-  };
-
   render() {
-    const { type, action, model, user, children } = this.props;
-    const { punditCheck, punditType } = this.context;
-    if (punditCheck(type || punditType, action, model, user)) {
-      return children;
+    if (this.passesPermissions()) {
+      return this.props.children;
     }
     return null;
   }

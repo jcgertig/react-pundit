@@ -1,7 +1,7 @@
 {
   "name": "react-pundit",
   "description": "React components to build permission controlled ui's.",
-  "version": "1.0.0-rc7",
+  "version": "1.0.0-rc8",
   "main": "lib/index.js",
   "author": "jcgertig",
   "repository": "jcgertig/react-pundit",

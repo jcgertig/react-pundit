@@ -179,8 +179,82 @@ import {
 import {
   PunditPolicy,
   createPolicy,
-  toPolicyObject
+  toPolicyObject,
+  PunditComponent
 } from 'react-pundit';
+```
+
+### PunditContainer
+
+`PunditContainer` is the root of react-pundit and is where the policies are set.
+You can pass a user into the container and have that act as the default user for
+all children that use pundit. The container does not produce DOM.
+
+```html
+<PunditContainer policies={policies} user={defaultUser}>
+  <div className="App">
+  </div>
+</PunditContainer>
+```
+
+### PunditTypeSet
+
+`PunditTypeSet` is a convenience tool. It allows you not have to set the type
+prop on any children in side of it. Those children that do have type set will
+override this type.
+
+```html
+<PunditTypeSet type="DefaultType">
+</PunditTypeSet>
+```
+
+### VisibleIf
+
+`VisibleIf` is the base logic unit in react-pundit currently. It takes a
+number of props.
+
+- `type` : The policy class
+- `action` : The method to check against
+- `user` : The user whose permission are being checked
+- `model` : If needed the model the permissions are being checked against
+
+It works so that if the permissions are met then the child will be rendered
+else it will not be
+
+### PunditComponent
+
+`PunditComponent` is a base react component that can be extended to create
+child components that use pundits checks. It does this by haveing all the default
+params needed to run the checks and exposing `passesPermissions` which return a
+boolean `true` of `false` for if the user has the permissions required.
+
+Look at the source for `VisibleIf` for reference.
+
+```javascript
+class VisibleIf extends PunditComponent {
+
+  static displayName = 'VisibleIf';
+
+  render() {
+    if (this.passesPermissions()) {
+      return this.props.children;
+    }
+    return null;
+  }
+}
+```
+If you need to extended the prop types or default props its is easy.
+
+```javascript
+static propTypes = {
+  ...PunditComponent.propTypes,
+  newProp: PropTypes.any,
+};
+
+static defaultProps = {
+  ...PunditComponent.defaultProps,
+  newProp: 'some default',
+};
 ```
 
 > Work in progress
