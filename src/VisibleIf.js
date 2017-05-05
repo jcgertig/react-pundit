@@ -8,6 +8,9 @@ class VisibleIf extends PunditComponent {
 
   render() {
     if (this.passesPermissions()) {
+      if (React.Children.count(this.props.children) > 1) {
+        return <span className="VisibleIf">{this.props.children}</span>;
+      }
       return this.props.children;
     }
     return null;

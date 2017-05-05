@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 import isObject from 'lodash.isplainobject';
 
@@ -56,6 +56,9 @@ class PunditContainer extends Component {
   }
 
   render() {
+    if (Children.count(this.props.children) > 1) {
+      return <div className="PunditContainer">{this.props.children}</div>;
+    }
     return this.props.children;
   }
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 
 class PunditTypeSet extends Component {
@@ -24,6 +24,9 @@ class PunditTypeSet extends Component {
   }
 
   render() {
+    if (Children.count(this.props.children) > 1) {
+      return <span className="PunditTypeSet">{this.props.children}</span>;
+    }
     return this.props.children;
   }
 }

@@ -188,7 +188,8 @@ import {
 
 `PunditContainer` is the root of react-pundit and is where the policies are set.
 You can pass a user into the container and have that act as the default user for
-all children that use pundit. The container does not produce DOM.
+all children that use pundit. The container will only create DOM if there is
+more then one child inside it.
 
 ```html
 <PunditContainer policies={policies} user={defaultUser}>

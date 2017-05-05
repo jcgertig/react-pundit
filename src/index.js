@@ -1,5 +1,6 @@
 import PunditContainer from './PunditContainer';
 import PunditComponent from './PunditComponent';
+import PunditTypeSet from './PunditTypeSet';
 import VisibleIf from './VisibleIf';
 
 import PunditPolicy from './PunditPolicy';
@@ -14,4 +15,12 @@ const toPolicyObject = (arrayOfPolicyClasses) => {
   return obj;
 };
 
-export { PunditContainer, VisibleIf, createPolicy, toPolicyObject, PunditPolicy, PunditComponent };
+export {
+  PunditContainer,
+  PunditTypeSet,
+  VisibleIf,
+  createPolicy,
+  toPolicyObject,
+  PunditPolicy,
+  PunditComponent
+};
