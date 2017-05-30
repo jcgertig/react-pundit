@@ -61,6 +61,7 @@ class App extends Component {
               type="Post"
               action="Delete"
               model={post}
+              user={userAdmin}
               ifClick={() => alert('Good to go')}
               elseClick={() => alert('This is not okay')}
             >
@@ -70,7 +71,6 @@ class App extends Component {
               type="Post"
               action="Delete"
               model={post}
-              user={userOneActivated}
               ifClick={() => alert('Good to go')}
               elseClick={() => alert('This is not okay')}
             >

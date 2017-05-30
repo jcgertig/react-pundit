@@ -172,7 +172,8 @@ export default toPolicyObject([new PostPolicy(), new CommentPolicy()]);
 import {
   PunditContainer,
   PunditTypeSet,
-  VisibleIf
+  VisibleIf,
+  IfElseButton
 } from 'react-pundit';
 
 // Available helpers
@@ -221,6 +222,51 @@ number of props.
 
 It works so that if the permissions are met then the child will be rendered
 else it will not be
+
+### IfElseButton
+`IfElseButton` is a button that has two click handlers one `ifClick` that will trigger
+if the user has permission and a `elseClick` if they do not. The button will always have
+the class `IfElseButton` but you can add classes via the `className` prop.
+
+All Props:
+
+- `type` : The policy class
+- `action` : The method to check against
+- `user` : The user whose permission are being checked
+- `model` : If needed the model the permissions are being checked against
+- `ifClick` : Function triggered if the user has permission and has clicked the button
+- `elseClick` : Function triggered if the user does not have permission and has clicked the button
+- `className` : Extra custom class to add to the button element
+
+Example:
+In this case the user has to be logged in and activated to do the action but the button is
+on a public facing page.
+
+```html
+<IfElseButton
+  type="Post"
+  action="ToggleLike"
+  model={post}
+  ifClick={() => this.toggleLike(post)}
+  elseClick={() => this.hasUser ? this.openModal('Please activate your account.') : this.openLogin)}
+>
+  {count} Likes
+</IfElseButton>
+```
+
+```javascript
+class PostPolicy extends PunditPolicy {
+  constructor() {
+    super('Post');
+  }
+
+  ToggleLike(model, user) {
+    return user !== null && user.activated;
+  }
+
+  ...
+}
+```
 
 ### PunditComponent
 

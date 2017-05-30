@@ -2,6 +2,7 @@ import PunditContainer from './PunditContainer';
 import PunditComponent from './PunditComponent';
 import PunditTypeSet from './PunditTypeSet';
 import VisibleIf from './VisibleIf';
+import IfElseButton from './IfElseButton';
 
 import PunditPolicy from './PunditPolicy';
 
@@ -19,6 +20,7 @@ export {
   PunditContainer,
   PunditTypeSet,
   VisibleIf,
+  IfElseButton,
   createPolicy,
   toPolicyObject,
   PunditPolicy,
