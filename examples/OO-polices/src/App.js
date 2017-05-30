@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PunditContainer, PunditTypeSet, VisibleIf } from 'react-pundit';
+import { PunditContainer, PunditTypeSet, VisibleIf, IfElseButton } from 'react-pundit';
 import policies from './policies';
 import logo from './logo.svg';
 import './App.css';
@@ -56,6 +56,26 @@ class App extends Component {
                 <button>delete will show 3</button>
               </VisibleIf>
             </div>
+
+            <IfElseButton
+              type="Post"
+              action="Delete"
+              model={post}
+              ifClick={() => alert('Good to go')}
+              elseClick={() => alert('This is not okay')}
+            >
+              Should be good.
+            </IfElseButton>
+            <IfElseButton
+              type="Post"
+              action="Delete"
+              model={post}
+              user={userOneActivated}
+              ifClick={() => alert('Good to go')}
+              elseClick={() => alert('This is not okay')}
+            >
+              Should not be good.
+            </IfElseButton>
           </div>
         </PunditContainer>
       </div>
