@@ -18,7 +18,7 @@ class PunditTypeSet extends Component {
 
   static childContextTypes = {
     punditType: PropTypes.string,
-    punditModel: Props.any,
+    punditModel: PropTypes.any,
   };
 
   getChildContext() {
