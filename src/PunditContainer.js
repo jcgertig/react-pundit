@@ -29,7 +29,7 @@ class PunditContainer extends Component {
   };
 
   getChildContext() {
-    const punditCheck = (type, action, model, user = null) => {
+    const punditCheck = (type, action, model = null, user = null) => {
       const { policies } = this.props;
       let policy;
       if (Array.isArray(policies)) {

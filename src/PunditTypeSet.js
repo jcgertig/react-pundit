@@ -12,15 +12,17 @@ class PunditTypeSet extends Component {
 
   static defaultProps = {
     type: '',
+    model: null,
     user: null,
   };
 
   static childContextTypes = {
     punditType: PropTypes.string,
+    punditModel: Props.any,
   };
 
   getChildContext() {
-    return { punditType: this.props.type };
+    return { punditType: this.props.type, punditModel: this.props.model };
   }
 
   render() {

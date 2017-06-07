@@ -193,7 +193,7 @@ all children that use pundit. The container will only create DOM if there is
 more then one child inside it.
 
 ```html
-<PunditContainer policies={policies} user={defaultUser}>
+<PunditContainer policies={policies} user={optionalDefaultUser}>
   <div className="App">
   </div>
 </PunditContainer>
@@ -202,11 +202,11 @@ more then one child inside it.
 ### PunditTypeSet
 
 `PunditTypeSet` is a convenience tool. It allows you not have to set the type
-prop on any children in side of it. Those children that do have type set will
-override this type.
+prop on any children in side of it as well as the model. Those children that do have type set will
+override this type the smae is true for model.
 
 ```html
-<PunditTypeSet type="DefaultType">
+<PunditTypeSet type="DefaultType" model={optionalDefaultModel}>
 </PunditTypeSet>
 ```
 

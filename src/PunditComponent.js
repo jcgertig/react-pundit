@@ -23,12 +23,13 @@ class PunditComponent extends Component {
   static contextTypes = {
     punditCheck: PropTypes.func,
     punditType: PropTypes.string,
+    punditModel: PropTypes.any,
   };
 
   passesPermissions = () => {
     const { type, action, model, user } = this.props;
-    const { punditCheck, punditType } = this.context;
-    return punditCheck(type || punditType, action, model, user);
+    const { punditCheck, punditType, punditModel } = this.context;
+    return punditCheck(type || punditType, action, model || punditModel, user);
   }
 
   render() {
