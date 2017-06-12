@@ -7,6 +7,7 @@ class PunditTypeSet extends Component {
 
   static propTypes = {
     type: PropTypes.string,
+    model: PropTypes.any,
     children: PropTypes.any,
   };
 

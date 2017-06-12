@@ -16,7 +16,7 @@ class PunditComponent extends Component {
   static defaultProps = {
     type: '',
     action: '',
-    model: {},
+    model: false,
     user: null,
   };
 
