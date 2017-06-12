@@ -8,7 +8,7 @@ class PunditComponent extends Component {
   static propTypes = {
     type: PropTypes.string,
     action: PropTypes.string,
-    model: PropTypes.object,
+    model: PropTypes.any,
     user: PropTypes.object,
     children: PropTypes.any,
   };
@@ -16,7 +16,7 @@ class PunditComponent extends Component {
   static defaultProps = {
     type: '',
     action: '',
-    model: false,
+    model: undefined,
     user: null,
   };
 
