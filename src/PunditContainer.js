@@ -16,12 +16,13 @@ class PunditContainer extends Component {
       PropTypes.array,
     ]).isRequired,
     user: PropTypes.object,
-    children: PropTypes.any,
+    element: PropTypes.element,
   };
 
   static defaultProps = {
     policies: {},
     user: null,
+    element: React.DOM.div,
   };
 
   static childContextTypes = {
@@ -57,7 +58,8 @@ class PunditContainer extends Component {
 
   render() {
     if (Children.count(this.props.children) > 1) {
-      return <div className="PunditContainer">{this.props.children}</div>;
+      const Wrapper = this.props.element;
+      return <Wrapper className="PunditContainer">{this.props.children}</Wrapper>;
     }
     return this.props.children;
   }

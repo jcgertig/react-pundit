@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PunditComponent from './PunditComponent';
+import omit from 'lodash.omit';
 
 class IfElseButton extends PunditComponent {
 
@@ -11,6 +12,7 @@ class IfElseButton extends PunditComponent {
     className: PropTypes.string,
     ifClick: PropTypes.func,
     elseClick: PropTypes.func,
+    element: PropTypes.element,
   };
 
   static defaultProps = {
@@ -18,6 +20,7 @@ class IfElseButton extends PunditComponent {
     className: '',
     ifClick: () => {},
     elseClick: () => {},
+    element: React.DOM.button,
   };
 
   handleClick = (e) => {
@@ -29,10 +32,12 @@ class IfElseButton extends PunditComponent {
   };
 
   render() {
+    const { element: Button, children, className, rest } = this.props;
+    const passProps = omit(this.props, Object.keys(IfElseButton.propTypes));
     return (
-      <button className={`IfElseButton ${this.props.className}`.trim()} onClick={this.handleClick}>
-        {this.props.children}
-      </button>
+      <Button className={`IfElseButton ${className}`.trim()} onClick={this.handleClick} {...passProps}>
+        {children}
+      </Button>
     );
   }
 }

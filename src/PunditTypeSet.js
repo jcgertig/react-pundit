@@ -8,13 +8,13 @@ class PunditTypeSet extends Component {
   static propTypes = {
     type: PropTypes.string,
     model: PropTypes.any,
-    children: PropTypes.any,
+    element: PropTypes.element,
   };
 
   static defaultProps = {
     type: '',
     model: null,
-    user: null,
+    element: React.DOM.span,
   };
 
   static childContextTypes = {
@@ -28,7 +28,8 @@ class PunditTypeSet extends Component {
 
   render() {
     if (Children.count(this.props.children) > 1) {
-      return <span className="PunditTypeSet">{this.props.children}</span>;
+      const Wrapper = this.props.element;
+      return <Wrapper className="PunditTypeSet">{this.props.children}</Wrapper>;
     }
     return this.props.children;
   }

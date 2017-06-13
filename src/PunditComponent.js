@@ -8,14 +8,15 @@ class PunditComponent extends Component {
   static propTypes = {
     type: PropTypes.string,
     action: PropTypes.string,
+    method: PropTypes.string,
     model: PropTypes.any,
     user: PropTypes.object,
-    children: PropTypes.any,
   };
 
   static defaultProps = {
     type: '',
     action: '',
+    method: '',
     model: undefined,
     user: null,
   };
@@ -27,9 +28,9 @@ class PunditComponent extends Component {
   };
 
   passesPermissions = () => {
-    const { type, action, model, user } = this.props;
+    const { type, action, method, model, user } = this.props;
     const { punditCheck, punditType, punditModel } = this.context;
-    return punditCheck(type || punditType, action, model || punditModel, user);
+    return punditCheck(type || punditType, action || method, model || punditModel, user);
   }
 
   render() {

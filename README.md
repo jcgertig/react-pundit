@@ -1,6 +1,5 @@
 # react-pundit
 
-[![build status](https://img.shields.io/travis/jcgertig/react-pundit/master.svg?style=flat-square)](https://travis-ci.org/jcgertig/react-pundit)
 ![Downloads](https://img.shields.io/npm/dm/react-pundit.svg)
 ![Downloads](https://img.shields.io/npm/dt/react-pundit.svg)
 ![npm version](https://img.shields.io/npm/v/react-pundit.svg)
@@ -190,7 +189,8 @@ import {
 `PunditContainer` is the root of react-pundit and is where the policies are set.
 You can pass a user into the container and have that act as the default user for
 all children that use pundit. The container will only create DOM if there is
-more then one child inside it.
+more then one child inside it. It creates a `div` by default in that case but you
+can override with a `element` prop ie: `element={React.DOM.span}` or `element={Wrapper}`.
 
 ```html
 <PunditContainer policies={policies} user={optionalDefaultUser}>
@@ -203,7 +203,9 @@ more then one child inside it.
 
 `PunditTypeSet` is a convenience tool. It allows you not have to set the type
 prop on any children in side of it as well as the model. Those children that do have type set will
-override this type the smae is true for model.
+override this type, the same is true for model. The type set will only create DOM if there is
+more then one child inside it. It creates a `span` by default in that case but you
+can override with a `element` prop ie: `element={React.DOM.span}` or `element={Wrapper}`.
 
 ```html
 <PunditTypeSet type="DefaultType" model={optionalDefaultModel}>
@@ -216,7 +218,7 @@ override this type the smae is true for model.
 number of props.
 
 - `type` : The policy class
-- `action` : The method to check against
+- `action || method` : The method to check against
 - `user` : The user whose permission are being checked
 - `model` : If needed the model the permissions are being checked against
 
@@ -231,16 +233,19 @@ the class `IfElseButton` but you can add classes via the `className` prop.
 All Props:
 
 - `type` : The policy class
-- `action` : The method to check against
+- `action || method` : The method to check against
 - `user` : The user whose permission are being checked
 - `model` : If needed the model the permissions are being checked against
 - `ifClick` : Function triggered if the user has permission and has clicked the button
 - `elseClick` : Function triggered if the user does not have permission and has clicked the button
 - `className` : Extra custom class to add to the button element
+- `element` : Optional component to use to override the default `button` element
+
+**Any other props passed in will be passed to the rendering element.**
 
 Example:
 In this case the user has to be logged in and activated to do the action but the button is
-on a public facing page.
+on a public facing page. We also use a custom `Button` component to handle the render and a prop that will be passed to it.
 
 ```html
 <IfElseButton
@@ -249,6 +254,8 @@ on a public facing page.
   model={post}
   ifClick={() => this.toggleLike(post)}
   elseClick={() => this.hasUser ? this.openModal('Please activate your account.') : this.openLogin)}
+  element={Button}
+  propSpecificToTheButton={'Some Value'}
 >
   {count} Likes
 </IfElseButton>
@@ -275,7 +282,8 @@ child components that use pundits checks. It does this by haveing all the defaul
 params needed to run the checks and exposing `passesPermissions` which return a
 boolean `true` of `false` for if the user has the permissions required.
 
-Look at the source for `VisibleIf` for reference.
+Look at the source for `VisibleIf` for reference. This is a bit cleaner not
+handling the case of more than one child.
 
 ```javascript
 class VisibleIf extends PunditComponent {
