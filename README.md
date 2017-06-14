@@ -189,8 +189,8 @@ import {
 `PunditContainer` is the root of react-pundit and is where the policies are set.
 You can pass a user into the container and have that act as the default user for
 all children that use pundit. The container will only create DOM if there is
-more then one child inside it. It creates a `div` by default in that case but you
-can override with a `element` prop ie: `element={React.DOM.span}` or `element={Wrapper}`.
+more then one child inside it. It creates a `'div'` by default in that case but you
+can override with a `element` prop ie: `element="span"` or `element={Wrapper}`.
 
 ```html
 <PunditContainer policies={policies} user={optionalDefaultUser}>
@@ -204,8 +204,8 @@ can override with a `element` prop ie: `element={React.DOM.span}` or `element={W
 `PunditTypeSet` is a convenience tool. It allows you not have to set the type
 prop on any children in side of it as well as the model. Those children that do have type set will
 override this type, the same is true for model. The type set will only create DOM if there is
-more then one child inside it. It creates a `span` by default in that case but you
-can override with a `element` prop ie: `element={React.DOM.span}` or `element={Wrapper}`.
+more then one child inside it. It creates a `'span'` by default in that case but you
+can override with a `element` prop ie: `element="div"` or `element={Wrapper}`.
 
 ```html
 <PunditTypeSet type="DefaultType" model={optionalDefaultModel}>
@@ -239,7 +239,7 @@ All Props:
 - `ifClick` : Function triggered if the user has permission and has clicked the button
 - `elseClick` : Function triggered if the user does not have permission and has clicked the button
 - `className` : Extra custom class to add to the button element
-- `element` : Optional component to use to override the default `button` element
+- `element` : Optional component to use to override the default `'button'` element
 
 **Any other props passed in will be passed to the rendering element.**
 
@@ -255,7 +255,7 @@ on a public facing page. We also use a custom `Button` component to handle the r
   ifClick={() => this.toggleLike(post)}
   elseClick={() => this.hasUser ? this.openModal('Please activate your account.') : this.openLogin)}
   element={Button}
-  propSpecificToTheButton={'Some Value'}
+  propSpecificToTheButton="Some Value"
 >
   {count} Likes
 </IfElseButton>

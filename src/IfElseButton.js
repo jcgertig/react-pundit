@@ -12,7 +12,7 @@ class IfElseButton extends PunditComponent {
     className: PropTypes.string,
     ifClick: PropTypes.func,
     elseClick: PropTypes.func,
-    element: PropTypes.element,
+    element: PropTypes.any
   };
 
   static defaultProps = {
@@ -20,7 +20,7 @@ class IfElseButton extends PunditComponent {
     className: '',
     ifClick: () => {},
     elseClick: () => {},
-    element: React.DOM.button,
+    element: 'button',
   };
 
   handleClick = (e) => {
@@ -32,13 +32,13 @@ class IfElseButton extends PunditComponent {
   };
 
   render() {
-    const { element: Button, children, className, rest } = this.props;
+    const { element, children, className, rest } = this.props;
     const passProps = omit(this.props, Object.keys(IfElseButton.propTypes));
-    return (
-      <Button className={`IfElseButton ${className}`.trim()} onClick={this.handleClick} {...passProps}>
-        {children}
-      </Button>
-    );
+    return React.createElement(element, {
+      className: `IfElseButton ${className}`.trim(),
+      onClick: this.handleClick,
+      ...passProps
+    }, children);
   }
 }
 

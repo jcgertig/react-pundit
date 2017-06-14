@@ -8,19 +8,20 @@ class VisibleIf extends PunditComponent {
 
   static propTypes = {
     ...PunditComponent.propTypes,
-    element: PropTypes.element,
+    element: PropTypes.any,
   };
 
   static defaultProps = {
     ...PunditComponent.defaultProps,
-    element: React.DOM.span,
+    element: 'span',
   };
 
   render() {
     if (this.passesPermissions()) {
       if (React.Children.count(this.props.children) > 1) {
-        const Wrapper = this.props.element;
-        return <Wrapper className="VisibleIf">{this.props.children}</Wrapper>;
+        return React.createElement(this.props.element, {
+          className: 'VisibleIf'
+        }, this.props.children);
       }
       return this.props.children;
     }
