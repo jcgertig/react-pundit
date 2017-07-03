@@ -1,7 +1,7 @@
 {
   "name": "react-pundit",
   "description": "React components to build permission controlled ui's.",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "lib/index.js",
   "author": "jcgertig",
   "repository": "jcgertig/react-pundit",
@@ -32,5 +32,20 @@
   "files": [
     "lib/",
     "dist/"
+  ],
+  "keywords": [
+    "acl",
+    "react",
+    "permission",
+    "pundit",
+    "permissions",
+    "permissioning",
+    "admin",
+    "access control list",
+    "access",
+    "control",
+    "list",
+    "OO",
+    "Object Oriented"
   ]
 }
