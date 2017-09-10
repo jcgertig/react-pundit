@@ -11,6 +11,7 @@ ratings:
   - src/**
 exclude_paths:
 - "__tests__/**"
+- "__test__/**"
 - "__mocks__/**"
 - "examples/**"
 - "lib/**"
