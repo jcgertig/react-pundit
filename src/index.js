@@ -10,7 +10,7 @@ const createPolicy = (type) => {
   return new PunditPolicy(type)
 };
 
-const toPolicyObject = (arrayOfPolicyClasses) => {
+const toPolicyObject = (arrayOfPolicyClasses = []) => {
   const obj = {};
   arrayOfPolicyClasses.forEach(klass => obj[klass.modelType] = klass);
   return obj;

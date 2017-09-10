@@ -6,6 +6,9 @@
 ![dependencies](https://img.shields.io/david/jcgertig/react-pundit.svg)
 ![dev dependencies](https://img.shields.io/david/dev/jcgertig/react-pundit.svg)
 ![License](https://img.shields.io/npm/l/react-pundit.svg)
+[![Build Status](https://travis-ci.org/jcgertig/react-pundit.svg?branch=master)](https://travis-ci.org/jcgertig/react-pundit)
+[![Code Climate](https://codeclimate.com/github/jcgertig/react-pundit/badges/gpa.svg)](https://codeclimate.com/github/jcgertig/react-pundit)
+[![Test Coverage](https://codeclimate.com/github/jcgertig/react-pundit/badges/coverage.svg)](https://codeclimate.com/github/jcgertig/react-pundit/coverage)
 
 React components to build permission controlled ui's.
 

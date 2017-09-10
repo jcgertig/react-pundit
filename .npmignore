@@ -33,6 +33,7 @@ coverage
 lib-cov
 html-report
 xunit.xml
+coverage
 
 .project
 .idea
@@ -40,6 +41,10 @@ xunit.xml
 .iml
 *.sublime-workspace
 *.sublime-project
+.travis.yml
+.editorconfig
+.codeclimate.yml
+.babelrc
 
 ehthumbs.db
 Icon?
