@@ -11,9 +11,7 @@ const createPolicy = (type) => {
 };
 
 const toPolicyObject = (arrayOfPolicyClasses = []) => {
-  const obj = {};
-  arrayOfPolicyClasses.forEach(klass => obj[klass.modelType] = klass);
-  return obj;
+  return arrayOfPolicyClasses.reduce((obj, klass) => ({ ...obj, [klass.modelType]: klass }), {});
 };
 
 export {

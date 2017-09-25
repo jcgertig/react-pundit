@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import PunditComponent from './PunditComponent';
 import omit from 'lodash.omit';
 
+/* istanbul ignore next */
+let noop = () => {};
+
 class IfElseButton extends PunditComponent {
 
   static displayName = 'IfElseButton';
@@ -18,8 +21,8 @@ class IfElseButton extends PunditComponent {
   static defaultProps = {
     ...PunditComponent.defaultProps,
     className: '',
-    ifClick: () => {},
-    elseClick: () => {},
+    ifClick: noop,
+    elseClick: noop,
     element: 'button',
   };
 
