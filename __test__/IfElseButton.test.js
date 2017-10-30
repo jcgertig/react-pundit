@@ -1,7 +1,10 @@
 import React from 'react';
 import omit from 'lodash.omit';
-import { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { shallow, mount, configure } from 'enzyme';
 import { IfElseButton, PunditContainer, PunditComponent } from '../src/index';
+
+configure({ adapter: new Adapter() });
 
 describe('IfElseButton', () => {
   describe('static attributes', () => {

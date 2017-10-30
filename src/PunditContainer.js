@@ -7,7 +7,6 @@ import PunditPolicy from './PunditPolicy';
 const has = (obj, key) => obj.hasOwnProperty(key);
 
 class PunditContainer extends Component {
-
   static displayName = 'PunditContainer';
 
   static propTypes = {
@@ -16,13 +15,11 @@ class PunditContainer extends Component {
       PropTypes.array,
     ]).isRequired,
     user: PropTypes.object,
-    element: PropTypes.any,
   };
 
   static defaultProps = {
     policies: {},
     user: null,
-    element: 'div',
   };
 
   static childContextTypes = {
@@ -57,11 +54,6 @@ class PunditContainer extends Component {
   }
 
   render() {
-    if (Children.count(this.props.children) > 1) {
-      return React.createElement(this.props.element, {
-        className: 'PunditContainer'
-      }, this.props.children);
-    }
     return this.props.children;
   }
 }

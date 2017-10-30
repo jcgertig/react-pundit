@@ -7,7 +7,6 @@ import omit from 'lodash.omit';
 let noop = () => {};
 
 class IfElseButton extends PunditComponent {
-
   static displayName = 'IfElseButton';
 
   static propTypes = {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class PunditComponent extends Component {
-
   static displayName = 'PunditComponent';
 
   static propTypes = {

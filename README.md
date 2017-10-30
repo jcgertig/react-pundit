@@ -17,7 +17,8 @@ React components to build permission controlled ui's.
 
 ## Pre-requisites
 
-You should be familiar with Node + NPM, React and ES6 to use this library.
+This lib returns arrays of elements in render so requires react >= 16.
+If you are using a lower version of react use version 1.x.x of this lib.
 
 ## Getting Started
 

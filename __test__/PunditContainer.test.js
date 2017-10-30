@@ -1,22 +1,24 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { shallow, configure } from 'enzyme';
 import { PunditContainer, PunditPolicy } from '../src/index';
+
+configure({ adapter: new Adapter() });
 
 describe('PunditContainer', () => {
   describe('static attributes', () => {
     it('have displayName "PunditContainer"', () => {
       expect(PunditContainer.displayName).toEqual('PunditContainer');
     });
-    it('have propTypes with keys (policies, user, element)', () => {
+    it('have propTypes with keys (policies, user)', () => {
       expect(Object.keys(PunditContainer.propTypes)).toEqual([
-        'policies', 'user', 'element'
+        'policies', 'user'
       ]);
     });
     it('have defaultProps (type: "", action: "", method: "", model: undefined, user: null)', () => {
       expect(PunditContainer.defaultProps).toEqual({
         policies: {},
-        user: null,
-        element: 'div',
+        user: null
       });
     });
     it('have childContextTypes) with keys (punditCheck)', () => {
@@ -30,14 +32,14 @@ describe('PunditContainer', () => {
       const comp = new PunditContainer({ children: 'test' }, {});
       expect(comp.render()).toEqual('test');
     });
-    it('return wrapper div by default if more then one child', () => {
+    it('not return wrapper div by default if more then one child', () => {
       const wrapper = shallow((
         <PunditContainer>
           <div></div>
           <div></div>
         </PunditContainer>
       ));
-      expect(wrapper.find('div.PunditContainer').length).toEqual(1);
+      expect(wrapper.find('div.PunditContainer').length).toEqual(0);
     });
   });
   describe('getChildContext', () => {

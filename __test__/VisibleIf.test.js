@@ -1,22 +1,15 @@
 import React from 'react';
 import omit from 'lodash.omit';
-import { shallow, mount, render } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { shallow, mount, render, configure } from 'enzyme';
 import { VisibleIf, PunditContainer, PunditComponent } from '../src/index';
+
+configure({ adapter: new Adapter() });
 
 describe('VisibleIf', () => {
   describe('static attributes', () => {
     it('have displayName "VisibleIf"', () => {
       expect(VisibleIf.displayName).toEqual('VisibleIf');
-    });
-    it('have propTypes with keys (element)', () => {
-      expect(Object.keys(omit(VisibleIf.propTypes, Object.keys(PunditComponent.propTypes)))).toEqual([
-        'element'
-      ]);
-    });
-    it('have defaultProps (element: "span")', () => {
-      expect(omit(VisibleIf.defaultProps, Object.keys(PunditComponent.defaultProps))).toEqual({
-        element: 'span',
-      });
     });
   });
   describe('render', () => {
@@ -31,7 +24,7 @@ describe('VisibleIf', () => {
         ));
         expect(wrapper.text()).toEqual('test return children');
       });
-      it('and returns wrapper span by default if more then one child', () => {
+      it('and does not return a wrapper span by default if more then one child', () => {
         const wrapper = mount((
           <PunditContainer policies={{ Test: () => true }}>
             <VisibleIf type="Test">
@@ -40,7 +33,7 @@ describe('VisibleIf', () => {
             </VisibleIf>
           </PunditContainer>
         ));
-        expect(wrapper.find('span.VisibleIf').length).toEqual(1);
+        expect(wrapper.find('span.VisibleIf').length).toEqual(0);
       });
     });
     it('does not render if returns false', () => {
